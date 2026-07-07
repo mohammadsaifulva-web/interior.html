@@ -1,0 +1,565 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<title>SaifDesign - Interior Design Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary: #2c3e2d;
+    --secondary: #3d5c3e;
+    --accent: #c9a96e;
+    --gold: #d4af37;
+    --bg: #faf9f6;
+    --dark: #1a1a1a;
+    --card: #ffffff;
+    --border: #e8e4dc;
+    --muted: #8a8578;
+    --text: #2c2c2c;
+    --cream: #f5f0e8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* NAV */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 0 70px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250,249,246,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 800; color: var(--primary); letter-spacing: 1px; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 35px; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+.nav-links a:hover { color: var(--primary); }
+.btn-consult { padding: 11px 26px; background: var(--primary); color: white; border: none; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+.btn-consult:hover { background: var(--secondary); }
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+}
+.hero-left {
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    padding: 80px 70px;
+    color: white;
+    animation: fadeInUp 1s ease;
+}
+.hero-content { max-width: 500px; }
+.hero-tag { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+.hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 800; line-height: 1.1; margin-bottom: 25px; }
+.hero h1 span { font-style: italic; color: var(--accent); }
+.hero p { font-size: 16px; opacity: 0.75; line-height: 1.9; margin-bottom: 40px; }
+.hero-btns { display: flex; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
+.btn-gold { padding: 15px 35px; background: var(--accent); color: var(--dark); border: none; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+.btn-gold:hover { background: var(--gold); transform: translateY(-2px); }
+.btn-outline-w { padding: 15px 35px; background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+.btn-outline-w:hover { border-color: var(--accent); color: var(--accent); }
+.hero-stats { display: flex; gap: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+.hero-stat h3 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 800; color: var(--accent); }
+.hero-stat p { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+.hero-right { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.hero-img { display: flex; align-items: center; justify-content: center; font-size: 60px; transition: 0.3s; cursor: pointer; }
+.hero-img:hover { transform: scale(1.02); }
+.hero-img:nth-child(1) { background: linear-gradient(135deg, #e8ddd0, #d4c5b0); grid-row: span 2; font-size: 80px; }
+.hero-img:nth-child(2) { background: linear-gradient(135deg, #d4e0d4, #b8cbb8); }
+.hero-img:nth-child(3) { background: linear-gradient(135deg, #e8e0d0, #d0c8b8); }
+
+/* SERVICES */
+.services { padding: 100px 70px; background: var(--bg); }
+.section-header { margin-bottom: 60px; }
+.section-header.center { text-align: center; }
+.section-tag { font-size: 12px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px; }
+.section-header h2 { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 800; color: var(--dark); line-height: 1.2; }
+.section-header h2 span { font-style: italic; color: var(--accent); }
+.section-header p { font-size: 16px; color: var(--muted); line-height: 1.8; margin-top: 15px; max-width: 600px; }
+.section-header.center p { margin: 15px auto 0; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1200px; margin: 0 auto; }
+.service-card { background: white; padding: 40px 35px; border: 1px solid var(--border); transition: 0.3s; cursor: pointer; position: relative; overflow: hidden; }
+.service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: var(--accent); transition: 0.4s; }
+.service-card:hover::after { width: 100%; }
+.service-card:hover { box-shadow: 0 20px 60px rgba(44,62,45,0.08); transform: translateY(-5px); }
+.service-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 800; color: var(--accent); opacity: 0.3; margin-bottom: 15px; line-height: 1; }
+.service-icon { font-size: 38px; margin-bottom: 18px; display: block; }
+.service-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 12px; color: var(--dark); }
+.service-card p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+.service-link { font-size: 13px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; }
+.service-link:hover { gap: 14px; }
+
+/* PORTFOLIO */
+.portfolio { padding: 100px 70px; background: var(--cream); }
+.portfolio-filter { display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; }
+.port-btn { padding: 9px 22px; background: white; border: 1px solid var(--border); font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.3s; color: var(--muted); letter-spacing: 0.5px; }
+.port-btn.active, .port-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+.portfolio-card { background: white; overflow: hidden; border: 1px solid var(--border); transition: 0.3s; cursor: pointer; }
+.portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(44,62,45,0.1); }
+.portfolio-img { height: 260px; display: flex; align-items: center; justify-content: center; font-size: 80px; position: relative; overflow: hidden; transition: 0.3s; }
+.portfolio-card:hover .portfolio-img { transform: scale(1.05); }
+.portfolio-card:nth-child(1) .portfolio-img { background: linear-gradient(135deg, #e8ddd0, #d4c5b0); }
+.portfolio-card:nth-child(2) .portfolio-img { background: linear-gradient(135deg, #d4e0d4, #b8cbb8); }
+.portfolio-card:nth-child(3) .portfolio-img { background: linear-gradient(135deg, #e0d4d4, #c8b0b0); }
+.portfolio-card:nth-child(4) .portfolio-img { background: linear-gradient(135deg, #d4d4e0, #b0b0c8); }
+.portfolio-card:nth-child(5) .portfolio-img { background: linear-gradient(135deg, #e0e0d4, #c8c8b0); }
+.portfolio-card:nth-child(6) .portfolio-img { background: linear-gradient(135deg, #e0d4e0, #c8b0c8); }
+.portfolio-overlay { position: absolute; inset: 0; background: rgba(44,62,45,0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; opacity: 0; transition: 0.3s; }
+.portfolio-card:hover .portfolio-overlay { opacity: 1; }
+.overlay-btn { padding: 10px 24px; background: var(--accent); color: var(--dark); border: none; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; }
+.portfolio-info { padding: 20px 25px; }
+.portfolio-cat { font-size: 11px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+.portfolio-info h3 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin-bottom: 5px; color: var(--dark); }
+.portfolio-info p { font-size: 13px; color: var(--muted); }
+
+/* PROCESS */
+.process { padding: 100px 70px; background: var(--primary); color: white; }
+.process .section-header h2 { color: white; }
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1200px; margin: 60px auto 0; }
+.process-card { padding: 35px 25px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; text-align: center; }
+.process-card:hover { background: rgba(255,255,255,0.05); border-color: var(--accent); transform: translateY(-5px); }
+.process-num { font-family: 'Playfair Display', serif; font-size: 60px; font-weight: 800; color: var(--accent); opacity: 0.4; line-height: 1; margin-bottom: 15px; }
+.process-icon { font-size: 40px; margin-bottom: 18px; display: block; }
+.process-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
+.process-card p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+/* TEAM */
+.team { padding: 100px 70px; background: var(--bg); text-align: center; }
+.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; max-width: 1200px; margin: 60px auto 0; }
+.team-card { background: white; overflow: hidden; border: 1px solid var(--border); transition: 0.3s; }
+.team-card:hover { transform: translateY(-5px); box-shadow: 0 15px 50px rgba(44,62,45,0.08); }
+.team-img { height: 220px; display: flex; align-items: center; justify-content: center; font-size: 70px; position: relative; }
+.team-card:nth-child(1) .team-img { background: linear-gradient(135deg, #e8ddd0, #d4c5b0); }
+.team-card:nth-child(2) .team-img { background: linear-gradient(135deg, #d4e0d4, #b8cbb8); }
+.team-card:nth-child(3) .team-img { background: linear-gradient(135deg, #e0d4d4, #c8b0b0); }
+.team-card:nth-child(4) .team-img { background: linear-gradient(135deg, #d4d4e0, #b0b0c8); }
+.team-role { position: absolute; bottom: 0; left: 0; right: 0; background: var(--accent); color: var(--dark); padding: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.team-info { padding: 20px; text-align: left; }
+.team-info h3 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin-bottom: 5px; color: var(--dark); }
+.team-info p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* TESTIMONIALS */
+.testimonials { padding: 100px 70px; background: var(--cream); text-align: center; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1200px; margin: 60px auto 0; }
+.testimonial-card { background: white; padding: 35px; border: 1px solid var(--border); text-align: left; transition: 0.3s; position: relative; }
+.testimonial-card:hover { border-color: var(--accent); box-shadow: 0 10px 40px rgba(44,62,45,0.06); }
+.testimonial-card::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 100px; color: var(--accent); opacity: 0.12; position: absolute; top: 5px; left: 20px; line-height: 1; }
+.testimonial-stars { color: var(--gold); font-size: 14px; margin-bottom: 15px; }
+.testimonial-card p { font-size: 14px; color: var(--muted); line-height: 1.9; margin-bottom: 25px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; padding-top: 20px; border-top: 1px solid var(--border); }
+.author-avatar { width: 44px; height: 44px; background: var(--primary); color: var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; flex-shrink: 0; }
+.author-info h4 { font-size: 14px; font-weight: 700; color: var(--dark); }
+.author-info p { font-size: 12px; color: var(--muted); }
+
+/* CONTACT */
+.contact { padding: 100px 70px; background: var(--bg); }
+.contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; max-width: 1200px; margin: 0 auto; align-items: start; }
+.contact-left .section-header h2 { color: var(--dark); }
+.contact-left > p { font-size: 16px; color: var(--muted); line-height: 1.8; margin-bottom: 40px; }
+.contact-details { display: flex; flex-direction: column; gap: 25px; margin-bottom: 35px; }
+.contact-item { display: flex; align-items: flex-start; gap: 18px; }
+.contact-icon { width: 48px; height: 48px; background: var(--cream); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.contact-item h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 5px; }
+.contact-item p { font-size: 14px; color: var(--muted); }
+.contact-form { background: white; padding: 45px; border: 1px solid var(--border); }
+.contact-form h3 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 800; color: var(--dark); margin-bottom: 30px; }
+.form-group { margin-bottom: 22px; }
+.form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 0; background: transparent; border: none; border-bottom: 1px solid var(--border); font-size: 15px; color: var(--text); outline: none; transition: 0.3s; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-bottom-color: var(--accent); }
+.form-group textarea { height: 100px; resize: none; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.submit-btn { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+.submit-btn:hover { background: var(--accent); color: var(--dark); }
+
+/* FOOTER */
+footer { background: var(--dark); padding: 60px 70px 25px; color: white; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-brand p { font-size: 14px; color: #475569; line-height: 1.8; margin-top: 15px; }
+.footer-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 18px; }
+.footer-col a { display: block; color: #64748b; text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: 0.3s; }
+.footer-col a:hover { color: var(--accent); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.footer-bottom p { font-size: 13px; color: #475569; }
+.footer-bottom span { color: var(--accent); }
+
+/* MOBILE */
+@media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 50px 20px; }
+    .hero h1 { font-size: 40px; }
+    .hero-right { display: none; }
+    .services, .portfolio, .process, .team, .testimonials, .contact { padding: 50px 20px; }
+    .section-header h2 { font-size: 32px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+    .contact-form { padding: 25px; }
+    .footer-top { grid-template-columns: 1fr; gap: 25px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">Saif<span>Design</span></div>
+    <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <button class="btn-consult" onclick="document.getElementById('contact').scrollIntoView()">Free Consultation</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-left">
+        <div class="hero-content">
+            <div class="hero-tag">Award Winning Studio Since 2010</div>
+            <h1>Where Beauty<br>Meets <span>Function</span></h1>
+            <p>We transform ordinary spaces into extraordinary living experiences. Every room tells a story — let us help you tell yours.</p>
+            <div class="hero-btns">
+                <button class="btn-gold" onclick="document.getElementById('portfolio').scrollIntoView()">View Portfolio →</button>
+                <button class="btn-outline-w" onclick="document.getElementById('contact').scrollIntoView()">Get Free Quote</button>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><h3>500+</h3><p>Projects Done</p></div>
+                <div class="hero-stat"><h3>15+</h3><p>Years Experience</p></div>
+                <div class="hero-stat"><h3>98%</h3><p>Happy Clients</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-right">
+        <div class="hero-img">🛋️</div>
+        <div class="hero-img">🪴</div>
+        <div class="hero-img">🏠</div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <div class="section-header center">
+        <p class="section-tag">What We Do</p>
+        <h2>Our <span>Design Services</span></h2>
+        <p>Comprehensive interior design solutions tailored to your unique vision and lifestyle</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-num">01</div>
+            <span class="service-icon">🏠</span>
+            <h3>Residential Design</h3>
+            <p>Transform your home into a personal sanctuary with our bespoke residential interior design services.</p>
+            <div class="service-link">Explore Service →</div>
+        </div>
+        <div class="service-card">
+            <div class="service-num">02</div>
+            <span class="service-icon">🏢</span>
+            <h3>Commercial Design</h3>
+            <p>Create inspiring workplaces and commercial spaces that boost productivity and leave lasting impressions.</p>
+            <div class="service-link">Explore Service →</div>
+        </div>
+        <div class="service-card">
+            <div class="service-num">03</div>
+            <span class="service-icon">🎨</span>
+            <h3>Space Planning</h3>
+            <p>Optimize your space with expert planning and layout design to maximize functionality and flow.</p>
+            <div class="service-link">Explore Service →</div>
+        </div>
+        <div class="service-card">
+            <div class="service-num">04</div>
+            <span class="service-icon">💡</span>
+            <h3>Lighting Design</h3>
+            <p>Illuminate your space with carefully crafted lighting solutions that enhance mood and ambiance.</p>
+            <div class="service-link">Explore Service →</div>
+        </div>
+        <div class="service-card">
+            <div class="service-num">05</div>
+            <span class="service-icon">🛋️</span>
+            <h3>Furniture Selection</h3>
+            <p>Curate the perfect furniture pieces that blend style, comfort and functionality seamlessly.</p>
+            <div class="service-link">Explore Service →</div>
+        </div>
+        <div class="service-card">
+            <div class="service-num">06</div>
+            <span class="service-icon">🖼️</span>
+            <h3>Art & Styling</h3>
+            <p>Add the finishing touches with carefully selected art, accessories and styling elements.</p>
+            <div class="service-link">Explore Service →</div>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+    <div class="section-header">
+        <p class="section-tag">Our Work</p>
+        <h2>Selected <span>Projects</span></h2>
+        <p>A showcase of our finest interior design transformations</p>
+    </div>
+    <div class="portfolio-filter">
+        <button class="port-btn active" onclick="filterPortfolio('all', this)">All Projects</button>
+        <button class="port-btn" onclick="filterPortfolio('residential', this)">Residential</button>
+        <button class="port-btn" onclick="filterPortfolio('commercial', this)">Commercial</button>
+        <button class="port-btn" onclick="filterPortfolio('hospitality', this)">Hospitality</button>
+    </div>
+    <div class="portfolio-grid" id="portfolioGrid"></div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+    <div class="section-header center">
+        <p class="section-tag">How We Work</p>
+        <h2>Our Design <span>Process</span></h2>
+        <p>A structured approach to creating your perfect space</p>
+    </div>
+    <div class="process-grid">
+        <div class="process-card">
+            <div class="process-num">01</div>
+            <span class="process-icon">💬</span>
+            <h3>Consultation</h3>
+            <p>We begin with an in-depth consultation to understand your vision, needs and budget.</p>
+        </div>
+        <div class="process-card">
+            <div class="process-num">02</div>
+            <span class="process-icon">✏️</span>
+            <h3>Concept Design</h3>
+            <p>Our designers create detailed concepts, mood boards and 3D visualizations for your approval.</p>
+        </div>
+        <div class="process-card">
+            <div class="process-num">03</div>
+            <span class="process-icon">🔨</span>
+            <h3>Execution</h3>
+            <p>We manage the entire implementation process with trusted contractors and suppliers.</p>
+        </div>
+        <div class="process-card">
+            <div class="process-num">04</div>
+            <span class="process-icon">✨</span>
+            <h3>Reveal</h3>
+            <p>The final reveal of your transformed space — styled and ready to be lived in and loved.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+    <div class="section-header center">
+        <p class="section-tag">Our Team</p>
+        <h2>Meet Our <span>Designers</span></h2>
+        <p>Passionate creative professionals dedicated to transforming your space</p>
+    </div>
+    <div class="team-grid">
+        <div class="team-card">
+            <div class="team-img">👩‍🎨<div class="team-role">Lead Designer</div></div>
+            <div class="team-info"><h3>Sara Hassan</h3><p>15 years of luxury residential and commercial design experience across the GCC.</p></div>
+        </div>
+        <div class="team-card">
+            <div class="team-img">👨‍🎨<div class="team-role">Senior Designer</div></div>
+            <div class="team-info"><h3>Ahmed Al-Rashid</h3><p>Specialist in contemporary and modern design with a focus on sustainable materials.</p></div>
+        </div>
+        <div class="team-card">
+            <div class="team-img">👩‍💼<div class="team-role">Project Manager</div></div>
+            <div class="team-info"><h3>Nora Ahmed</h3><p>Ensuring every project is delivered on time, within budget and to the highest standard.</p></div>
+        </div>
+        <div class="team-card">
+            <div class="team-img">👨‍💻<div class="team-role">3D Visualizer</div></div>
+            <div class="team-info"><h3>Omar Khan</h3><p>Creating stunning 3D renders that bring design concepts to life before execution begins.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+    <div class="section-header center">
+        <p class="section-tag">Client Stories</p>
+        <h2>What Our Clients <span>Say</span></h2>
+        <p>Real experiences from homeowners and businesses we have transformed</p>
+    </div>
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <p>"SaifDesign completely transformed our villa beyond our wildest dreams. Every detail was perfect and the team was professional throughout the entire process."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">A</div>
+                <div class="author-info"><h4>Ahmed Al-Rashid</h4><p>Villa Owner, Riyadh</p></div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <p>"Our office redesign by SaifDesign increased employee productivity and our clients are always impressed when they visit. Best investment we have ever made."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">S</div>
+                <div class="author-info"><h4>Sara Hassan</h4><p>CEO, TechCorp</p></div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <p>"The team listened to every detail of our vision and delivered something even more beautiful than we imagined. Our home is now our absolute favorite place."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">O</div>
+                <div class="author-info"><h4>Omar Khan</h4><p>Homeowner, Jeddah</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="contact-layout">
+        <div class="contact-left">
+            <div class="section-header">
+                <p class="section-tag">Get In Touch</p>
+                <h2>Start Your Design <span>Journey</span></h2>
+            </div>
+            <p>Ready to transform your space? Book a free consultation with our design team and let's create something beautiful together.</p>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div><h4>Studio</h4><p>King Fahd Road, Riyadh, Saudi Arabia</p></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div><h4>Phone</h4><p>+966 000 000 000</p></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div><h4>Email</h4><p>hello@saifdesign.com</p></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">⏰</div>
+                    <div><h4>Studio Hours</h4><p>Sunday - Thursday: 9AM - 6PM</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-form">
+            <h3>Book Free Consultation</h3>
+            <div class="form-row">
+                <div class="form-group"><label>First Name</label><input type="text" placeholder="Saif"></div>
+                <div class="form-group"><label>Last Name</label><input type="text" placeholder="Islam"></div>
+            </div>
+            <div class="form-group"><label>Email</label><input type="email" placeholder="saif@email.com"></div>
+            <div class="form-group"><label>Phone</label><input type="tel" placeholder="+966 000 000 000"></div>
+            <div class="form-group">
+                <label>Project Type</label>
+                <select>
+                    <option>Residential - Villa</option>
+                    <option>Residential - Apartment</option>
+                    <option>Commercial - Office</option>
+                    <option>Commercial - Retail</option>
+                    <option>Hospitality</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Budget Range</label>
+                <select>
+                    <option>50,000 - 100,000 SAR</option>
+                    <option>100,000 - 250,000 SAR</option>
+                    <option>250,000 - 500,000 SAR</option>
+                    <option>500,000+ SAR</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Tell Us About Your Project</label><textarea placeholder="Describe your space and vision..."></textarea></div>
+            <button class="submit-btn" onclick="alert('Thank you! Our design team will contact you within 24 hours.')">Book Consultation →</button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="logo" style="color:var(--accent);font-family:'Playfair Display',serif;font-size:24px">SaifDesign</div>
+            <p>Creating beautiful, functional spaces that inspire and delight. Riyadh's premier interior design studio.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Services</h4>
+            <a href="#">Residential</a>
+            <a href="#">Commercial</a>
+            <a href="#">Space Planning</a>
+            <a href="#">Styling</a>
+        </div>
+        <div class="footer-col">
+            <h4>Studio</h4>
+            <a href="#">About Us</a>
+            <a href="#">Our Team</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="#">📍 Riyadh, KSA</a>
+            <a href="#">📞 +966 000 000 000</a>
+            <a href="#">📧 hello@saifdesign.com</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 <span>SaifDesign</span>. All Rights Reserved.</p>
+        <p>Built by <span>Saif Islam</span></p>
+    </div>
+</footer>
+
+<script>
+const projects = [
+    { id:1, cat:'residential', name:'Modern Villa Riyadh', type:'Residential', desc:'Complete villa transformation with contemporary design', emoji:'🏡' },
+    { id:2, cat:'commercial', name:'TechCorp Office', type:'Commercial', desc:'Modern open-plan office design for 200 employees', emoji:'🏢' },
+    { id:3, cat:'hospitality', name:'Saif Boutique Hotel', type:'Hospitality', desc:'Luxury boutique hotel lobby and rooms design', emoji:'🏨' },
+    { id:4, cat:'residential', name:'Luxury Apartment', type:'Residential', desc:'Minimalist apartment design in Jeddah', emoji:'🛋️' },
+    { id:5, cat:'commercial', name:'Retail Flagship Store', type:'Commercial', desc:'Premium retail experience design', emoji:'🛍️' },
+    { id:6, cat:'residential', name:'Family Home Makeover', type:'Residential', desc:'Complete family home redesign in Dammam', emoji:'🏠' },
+];
+
+let filtered = [...projects];
+
+function renderPortfolio(list) {
+    document.getElementById('portfolioGrid').innerHTML = list.map(p => `
+        <div class="portfolio-card">
+            <div class="portfolio-img">
+                ${p.emoji}
+                <div class="portfolio-overlay">
+                    <button class="overlay-btn" onclick="alert('Viewing ${p.name}!')">View Project</button>
+                </div>
+            </div>
+            <div class="portfolio-info">
+                <div class="portfolio-cat">${p.type}</div>
+                <h3>${p.name}</h3>
+                <p>${p.desc}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+function filterPortfolio(cat, btn) {
+    document.querySelectorAll('.port-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filtered = cat === 'all' ? [...projects] : projects.filter(p => p.cat === cat);
+    renderPortfolio(filtered);
+}
+
+renderPortfolio(projects);
+</script>
+</body>
+</html>
